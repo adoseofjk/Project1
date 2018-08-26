@@ -50,7 +50,7 @@ class DataCenter(Topo):
         #NOTE:  Switch to Switch links will be bw=10 delay=0
         #NOTE:  Hosts to Switch links will be bw=1 delay=1
         #NOTE:  Use the following configurations as appropriate when creating the links
-	swlinkConfig = {'bw': 10, 'delay': '0ms', 'max_queue_size': max_queue_size}
+        swlinkConfig = {'bw': 10, 'delay': '0ms', 'max_queue_size': max_queue_size}
         hostlinkConfig = {'bw': 1, 'delay': '1ms','max_queue_size': max_queue_size}
         tls = self.addSwitch('tls1')
         #TODO: Create your DataCenter Mininet Topology here!
