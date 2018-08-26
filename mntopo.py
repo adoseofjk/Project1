@@ -19,6 +19,8 @@ class MNTopo(Topo):
 
         # Hosts and switches
         s1 = self.addSwitch('s1')
+        s2 = self.addSwitch('s2')
+        s3 = self.addSwitch('s3')
         sender = self.addHost('sender', **hostConfig)
         receiver = self.addHost('receiver', **hostConfig)
 
@@ -26,4 +28,10 @@ class MNTopo(Topo):
         self.addLink(receiver, s1, port1=0, port2=1, **linkConfig)
 
         # Wire sender
-        self.addLink(sender, s1, port1=0, port2=2, **linkConfig)
+        self.addLink(sender, s3, port1=0, port2=2, **linkConfig)
+
+        # Wire s1 and s2
+        self.addLink(s1, s2, port1=2, port2=1, **linkConfig)
+
+        #Wire s2 and s3
+        self.addLink(s2, s3, port1=2, port2=1, **linkConfig)
