@@ -20,7 +20,7 @@ class ComplexTopo(Topo):
                    'max_queue_size': max_queue_size }
         wifiLinkConfig = {'bw': 10, 'delay': '6ms', 'loss': 3,
                    'max_queue_size': max_queue_size }
-        3gLinkConfig = {'bw': 3, 'delay': '10ms', 'loss': 8,
+        threegLinkConfig = {'bw': 3, 'delay': '10ms', 'loss': 8,
                    'max_queue_size': max_queue_size }
 
         # Hosts and switches
@@ -33,9 +33,9 @@ class ComplexTopo(Topo):
         s4 = self.addSwitch('s4')
 
         # Add links
-        self.addLink(h1, s1, port1=0, port2=1, **ethernetLinkConfig)
-        self.addLink(s1, s2, port1=0, port2=2, **ethernetLinkConfig)
-        self.addLink(s2, s3, port1=2, port2=1, **ethernetLinkConfig)
-        self.addLink(s3, h2, port1=2, port2=1, **wifiLinkConfig)
-        self.addLink(s2, s4, port1=2, port2=1, **ethernetLinkConfig)
-        self.addLink(s4, h3, port1=2, port2=1, **3gLinkConfig)        
+        self.addLink(h1, s1, **ethernetLinkConfig)
+        self.addLink(s1, s2, **ethernetLinkConfig)
+        self.addLink(s2, s3, **ethernetLinkConfig)
+        self.addLink(s3, h2, **wifiLinkConfig)
+        self.addLink(s2, s4, **ethernetLinkConfig)
+        self.addLink(s4, h3, **threegLinkConfig)        

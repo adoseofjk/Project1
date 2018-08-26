@@ -60,8 +60,20 @@ class DataCenter(Topo):
         #NOTE: You MUST label hosts as h1x1x1, h1x1x2, ... hfixfixn     
         #HINT: Use a loop to construct the topology in pieces. Don't forget the link configuration.
 
+        for x in range(0, args.fi):
+                mlsName = "mls%d" % (x+1)
+                mlsSwitch = self.addSwitch(mlsName)
+                self.addLink(tls, mlsSwitch, **swlinkConfig)
+        
+                for y in range(0, args.fi):
+                        sName = "s%dx%d" % (x+1, y+1)
+                        sSwitch = self.addSwitch(sName)
+                        self.addLink(mlsSwitch, sSwitch, **swlinkConfig)
 
-
+                        for z in range(0, args.n):
+                                hName = "h%dx%dx%d" % (x+1, y+1, z+1)
+                                hSwitch = self.addHost(hName)
+                                self.addLink(sSwitch, hSwitch, **hostlinkConfig)
         
 def main():
     "Create specified topology and launch the command line interface"    
